@@ -43,8 +43,6 @@ module.exports = function (grunt) {
 
 		var options = this.options({
 			access: 'public-read',
-			accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-			secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 			uploadConcurrency: 1,
 			downloadConcurrency: 1,
 			mime: {},
@@ -183,23 +181,21 @@ module.exports = function (grunt) {
 			});
 		};
 
-		if (!options.accessKeyId && !options.mock) {
-			grunt.warn("Missing accessKeyId in options");
-		}
-
-		if (!options.secretAccessKey && !options.mock) {
-			grunt.warn("Missing secretAccessKey in options");
-		}
-
 		if (!options.bucket) {
 			grunt.warn("Missing bucket in options");
 		}
 
 		var s3_options = {
-			bucket: options.bucket,
-			accessKeyId: options.accessKeyId,
-			secretAccessKey: options.secretAccessKey
+			bucket: options.bucket
 		};
+
+		if (options.accessKeyId) {
+			s3_options.accessKeyId = options.accessKeyId;
+		}
+
+		if (options.secretAccessKey) {
+			s3_options.secretAccessKey = options.secretAccessKey;
+		}
 
 		if (!options.region) {
 			grunt.log.writeln("No region defined. S3 will default to US Standard\n".yellow);

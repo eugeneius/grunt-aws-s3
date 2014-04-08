@@ -26,12 +26,12 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 
 ### Options
 
-#### options.accessKeyId (required)
+#### options.accessKeyId
 Type: `String`
 
 The AWS accessKeyId. You can load it via JSON as shown in the example or use the `AWS_ACCESS_KEY_ID` environment variable.
 
-#### options.secretAccessKey (required)
+#### options.secretAccessKey
 Type: `String`
 
 The AWS secretAccessKey. You can load it via JSON as shown in the example or use the `AWS_SECRET_ACCESS_KEY` environment variable.
